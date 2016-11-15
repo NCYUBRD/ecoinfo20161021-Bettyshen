@@ -16,33 +16,18 @@ output: html_document
 3. 計算最冷⽉的每⽇最低溫平均
 [原始資料](https://www.dropbox.com/s/1rozrajsrw9vh8v/raw.tar.bz2?dl=0)
 
-#HEADER1
 ##檔案輸入
-###HEADER3
+
 我們使用```data.table```來處理中央氣象局資料，用```fread()```
 讀取原檔，因為原始檔案沒有欄位名稱，之後再使用```setnames()```來加入欄位名稱。
 ```{r}
 library(data.table)
 #資料輸入
-knitr::opts_chunk$set(echo = TRUE)
-```
+setwd('~/Desktop/生態資訊學/raw/')
+files<-list.files('.',pattern='auto')
+list(files)
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+for (i in 10) {
+fread(files[i],header=FALSE, skip=74, na.strings=c('-9991','-9996','-9997','-9998','-9999'))
+  
+}
