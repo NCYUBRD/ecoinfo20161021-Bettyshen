@@ -40,3 +40,9 @@ read_data <-function(x){for ( i in 1:files ) {
   }
 
 ```
+```{r}
+##設定欄位名稱
+#將欄位名稱設定為colnamesC0M530
+colnamesC0M530<-c ('ston','yyyymmddhh','PS01','TX01','RH01','WD01','WD02','PP01','SS01')
+#使用設定的setnames() 來設定C0M530的欄位名稱
+setnames(cwb[[i]],1:9, colnamesC0M530)
