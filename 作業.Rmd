@@ -31,10 +31,12 @@ files <- list.files('.', pattern='auto')
 ```{r}
 # 建立一個空的 list
 cwb <- list()
-for ( i in 1:3 ) {
+read_data <-function(x){for ( i in 1:files ) {
   cwb[[i]] <- fread(files[i],
         header=FALSE, skip=74,
         na.strings = c('-9991','-9996','-9997','-9998','-9999'))
   
 }
+  }
+
 ```
