@@ -25,17 +25,22 @@ library(data.table)
 #資料輸入
 setwd('~/Desktop/生態資訊學/raw/')
 files <- list.files('.', pattern='auto')
-
+#增設一個空的cont
+cont<- data.table()
 ```
 
 ```{r}
 # 建立一個空的 list
 cwb <- list()
-read_data <-function(x){for ( i in 1:files ) {
+read_data <-function(x){for ( i in 1:length(files )) {
   cwb[[i]] <- fread(files[i],
         header=FALSE, skip=74,
         na.strings = c('-9991','-9996','-9997','-9998','-9999'))
-  
+  if(i==1){files[i]
+    cont<-cwb[[i]]
+  }else{
+      cont<-rbind(cont,cwb[[i]])
+    }
 }
   }
 
@@ -45,4 +50,5 @@ read_data <-function(x){for ( i in 1:files ) {
 #將欄位名稱設定為colnamesC0M530
 colnamesC0M530<-c ('ston','yyyymmddhh','PS01','TX01','RH01','WD01','WD02','PP01','SS01')
 #使用設定的setnames() 來設定C0M530的欄位名稱
-setnames(cwb[[i]],1:9, colnamesC0M530)
+setnames( ,cont,colnamesC0M530)
+```
